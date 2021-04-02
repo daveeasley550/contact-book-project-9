@@ -10,6 +10,11 @@ class BaseModel(Model):
 
 class Contact(BaseModel):
     name = CharField()
-    phone = CharField()
+    phone = IntegerField()
     email= CharField()
 
+db.create_tables([Contact])
+
+mom = Contact.get(Contact.name == "Mom", Contact.phone == "5551111234", Contact.email == "mom@mommail.com")
+print(mom.name, mom.phone, mom.email)
+mom.save()
