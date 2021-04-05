@@ -22,6 +22,10 @@ db.create_tables([Contact])
 
 # mom = Contact(first_name = 'Mom', last_name = 'pascale', phone = '1234567890', email = 'mom@mommail.com').save()
 # jen = Contact(first_name = 'Jen', last_name = 'easley', phone = '1134567890', email = 'jen@jenmail.com').save()
+# sam = Contact(first_name = 'Sam', last_name = 'waka', phone = '1134567890', email = 'sam@sammail.com').save()
+# jen = Contact(first_name = 'jerk', last_name = 'uhhuh', phone = '1134567890', email = 'jerk@facemail.com').save()
+# jen = Contact(first_name = 'lil', last_name = 'dicky', phone = '1134567890', email = 'hiImDave@lildicky.com').save()
+
 def contact_Book():
     print("Hello, and welcome to your contacts! please choose from the following... \n 1: Show all Contacts \n 2: Search for a Contact \n 3: Add a contact \n 4: Delete a contact \n 5: Update a contact \n 6: Quit")
     choice = int(input('Enter Number: '))
@@ -47,7 +51,7 @@ def all_contacts():
 
 def search_contacts():
         search_name = str(
-            input('Which first name would you like to search for?: ')).lower()
+            input('Which first name would you like to search for?: '))
         result = Contact.select().where(Contact.first_name == search_name) 
         for contact in result:
             print(f'Full Name: {contact.first_name} {contact.last_name}, Phone: {contact.phone}, Email: {contact.email}')

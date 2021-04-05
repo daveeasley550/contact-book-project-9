@@ -1,20 +1,22 @@
 # CLI Contact Book
 
-This application is a contact book and is intended to be used and augmented via the command line. The application allows users to read, create, and delete contacts from a locally run PostgreSQL db.
+This application is a contact book and is intended to be used and augmented via the command line. The application allows users to read, create, update, and delete contacts from a locally run PostgreSQL db.
 
 ## Installation
 
 To run the application locally, make sure to have pipenv installed on your machine and fork and clone this repository. Once the repo has been cloned locally, run pipenv install to install dependencies listed in the Pipfile. 
 
-Then run the in the command line - python ContactBook.py or python3 ContactBook.py depending on what version of python is installed, to start the app.
+create a posgres db named contact
+
+Then run the in the command line - python3 ContactBook.py to start the app.
 
 ```bash
-pipenv install  pipenv shell  psql
+pipenv install  pipenv shell  psql CREATE DATABASE contact; \c contact; SELECT * FROM contact; 
 ```
 
 ## Usage
 
-There are prompts, based on the users response, all of your contacts will be displayed, or on to the next prompt...
+There are prompts with brevity codes, based on the user's response to the brevity codes, various prompts will be displayed to fulfill the user's needs
 ```
 
 ## Contributing
@@ -24,3 +26,4 @@ Please make sure to update tests as appropriate.
 
 ## License
 i don't have one, I got warrants!!!
+paid for by the committee of lil dicky is a real rapper
