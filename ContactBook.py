@@ -12,43 +12,37 @@ class BaseModel(Model):
 
 
 class Contact(BaseModel):
-    name = CharField()
+    first_name = CharField()
+    last_name = CharField()
     phone = CharField()
     email = CharField()
 
 
 db.create_tables([Contact])
 
-# mom = Contact(name = 'Mom', phone = '1234567890', email = 'mom@mommail.com').save()
-# jen = Contact(name = 'Jen', phone = '1134567890', email = 'jen@jenmail.com').save()
-
-# print(mom.name, mom.phone, mom.email)
-
+# mom = Contact(first_name = 'Mom', last_name = 'pascale', phone = '1234567890', email = 'mom@mommail.com').save()
+# jen = Contact(first_name = 'Jen', last_name = 'easley', phone = '1134567890', email = 'jen@jenmail.com').save()
 
 print("Hello, and welcome to your contacts")
 
 want_all_answer = str(
     input('Would you like to see all of your contacts? y or n: ')).lower()
-# search_answer = str(input('Would you like to search your contacts by name? y or n: ' )).lower()
-# search_name = str(input('Which name would you like to search for?: ' )).lower()
-
 
 def all_contacts(want_all_answer):
     contacts = Contact.select()
     if want_all_answer == "y":
         for contact in contacts:
-            print(f'{contact.name}, {contact.phone}, {contact.email}')
+            print(f'Full Name: {contact.first_name} {contact.last_name}, Phone: {contact.phone}, Email: {contact.email}')
     else:
        search_contacts(contacts)
-
 
 def search_contacts(contacts):
     search_answer = str(
         input('Would you like to search your contacts by name? y or n: ')).lower()
     if search_answer == 'y':
         search_name = str(
-            input('Which name would you like to search for?: ')).lower()
-        result = contacts.where(Contact.name== search_name) ##doesn't work right
+            input('Which first name would you like to search for?: ')).lower()
+        result = contacts.where(Contact.first_name== search_name) ##doesn't work right
         print(result)
     else:
       contact_add(contacts)
@@ -56,10 +50,12 @@ def search_contacts(contacts):
 def contact_add(contacts):
     add_answer = str(input('Would you like to add a contact? y or n: ' )).lower()
     if add_answer == 'y':
-        new_name = str(input('What is the new name?: ' )).lower()
+        new_first_name = str(input('What is the new first name?: ' )).lower()
+        new_last_name = str(input('What is the new last name?: ' )).lower()
         new_phone = str(input('What is the new phone number?: ' ))
         new_email = str(input('What is the new email address?: ' )).lower()
-        new_name = Contact(name = new_name, phone = new_phone, email = new_email ).save()
+        new_contact = Contact(first_name = new_first_name, last_name= new_last_name, phone = new_phone, email = new_email ).save()
+        print(new_contact)
 
 
 # def update_contacts(contacts):
