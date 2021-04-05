@@ -69,7 +69,7 @@ def contact_add():
 
 
 def update_contacts():
-        update_person = str(input('Which contact would you like to contact by first name?: '))
+        update_person = str(input('Which contact would you like to edit by first name?: '))
         new_first_name = str(input('What is the new first name?: ' )).lower()
         new_last_name = str(input('What is the new last name?: ' )).lower()
         new_phone = str(input('What is the new phone number?: ' ))
