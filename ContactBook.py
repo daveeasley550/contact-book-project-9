@@ -60,7 +60,6 @@ def contact_add(contacts):
         new_phone = str(input('What is the new phone number?: ' ))
         new_email = str(input('What is the new email address?: ' )).lower()
         new_name = Contact(name = new_name, phone = new_phone, email = new_email ).save()
-# mom = Contact(name = 'Mom', phone = '1234567890', email = 'mom@mommail.com').save()
 
 
 # def update_contacts(contacts):
