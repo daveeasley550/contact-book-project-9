@@ -22,50 +22,48 @@ db.create_tables([Contact])
 
 # mom = Contact(first_name = 'Mom', last_name = 'pascale', phone = '1234567890', email = 'mom@mommail.com').save()
 # jen = Contact(first_name = 'Jen', last_name = 'easley', phone = '1134567890', email = 'jen@jenmail.com').save()
-
-print("Hello, and welcome to your contacts")
-
-want_all_answer = str(
-    input('Would you like to see all of your contacts? y or n: ')).lower()
-
-def all_contacts(want_all_answer):
-    contacts = Contact.select()
-    if want_all_answer == "y":
-        for contact in contacts:
-            print(f'Full Name: {contact.first_name} {contact.last_name}, Phone: {contact.phone}, Email: {contact.email}')
+def contact_Book():
+    print("Hello, and welcome to your contacts! please choose from the following... \n 1: Show all Contacts \n 2: Search for a Contact \n 3: Add a contact \n 4: Delete a contact \n 5: Quit")
+    choice = int(input('Enter Number: '))
+    if choice == 1:
+        all_contacts()
+    elif choice == 2:
+        search_contacts()
+    elif choice == 3:
+        contact_add()
+    elif choice == 4:
+        delete_contact()
     else:
-       search_contacts(contacts)
+        exit()
 
-def search_contacts(contacts):
-    search_answer = str(
-        input('Would you like to search your contacts by name? y or n: ')).lower()
-    if search_answer == 'y':
+def all_contacts():
+    contacts = Contact.select()
+    for contact in contacts:
+            print(f'Full Name: {contact.first_name} {contact.last_name}, Phone: {contact.phone}, Email: {contact.email}')
+    
+    
+    contact_Book()
+
+def search_contacts():
         search_name = str(
             input('Which first name would you like to search for?: ')).lower()
-        result = contacts.select().where(Contact.first_name == search_name) 
+        result = Contact.select().where(Contact.first_name == search_name) 
         for contact in result:
             print(f'Full Name: {contact.first_name} {contact.last_name}, Phone: {contact.phone}, Email: {contact.email}')
-    else:
-      contact_add(contacts)
+        contact_Book()
 
-def contact_add(contacts):
-    add_answer = str(input('Would you like to add a contact? y or n: ' )).lower()
-    if add_answer == 'y':
+def contact_add():
         new_first_name = str(input('What is the new first name?: ' )).lower()
         new_last_name = str(input('What is the new last name?: ' )).lower()
         new_phone = str(input('What is the new phone number?: ' ))
         new_email = str(input('What is the new email address?: ' )).lower()
         new_contact = Contact(first_name = new_first_name, last_name= new_last_name, phone = new_phone, email = new_email ).save()
-        for contact in contacts:
+        for contact in Contact:
              print(f'Full Name: {contact.first_name} {contact.last_name}, Phone: {contact.phone}, Email: {contact.email}')
-
-    else:
-       delete_contact(contacts)
+        contact_Book()
 
 
-# def update_contacts(contacts):
-#     update_question = str(input('Would you like to edit a contact? y or n: ')).lower()  
-#     if update_question == 'y':
+# def update_contacts():
 #         update_person = str(input('Which contact would you like to contact by first name?: '))
 #         new_first_name = str(input('What is the new first name?: ' )).lower()
 #         new_last_name = str(input('What is the new last name?: ' )).lower()
@@ -73,16 +71,16 @@ def contact_add(contacts):
 #         new_email = str(input('What is the new email address?: ' )).lower()
 #         result = contacts.where(Contact.first_name == update_person)
 #         result = Contact.update(first_name = new_first_name, last_name= new_last_name, phone = new_phone, email = new_email )
-#     else:
-#       delete_contact(contacts)
+        #   for contact in Contact:
+        #      print(f'Full Name: {contact.first_name} {contact.last_name}, Phone: {contact.phone}, Email: {contact.email}')
+        #   contact_Book()
+  
 
-def delete_contact(contacts):
-    update_question = str(input('Would you like to delete a contact? y or n: ')).lower()  
-    if update_question == 'y':
+def delete_contact():
        update_person = str(input('Which contact would you like to delete by first name?: '))
        result = Contact.delete().where(Contact.first_name == update_person).execute()
-
-    
+       print(f"Deleted: {update_person}")
+       contact_Book()
  
 
-all_contacts(want_all_answer)
+contact_Book()
