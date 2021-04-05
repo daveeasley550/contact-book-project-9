@@ -20,10 +20,10 @@ class Contact(BaseModel):
 
 db.create_tables([Contact])
 
-# mom = Contact(first_name = 'Mom', last_name = 'pascale', phone = '1234567890', email = 'mom@mommail.com').save()
-# jen = Contact(first_name = 'Jen', last_name = 'easley', phone = '1134567890', email = 'jen@jenmail.com').save()
-# sam = Contact(first_name = 'Sam', last_name = 'waka', phone = '1134567890', email = 'sam@sammail.com').save()
-# jen = Contact(first_name = 'jerk', last_name = 'uhhuh', phone = '1134567890', email = 'jerk@facemail.com').save()
+# mom = Contact(first_name = 'mom', last_name = 'pascale', phone = '1234567890', email = 'mom@mommail.com').save()
+# jen = Contact(first_name = 'jen', last_name = 'easley', phone = '1134567890', email = 'jen@jenmail.com').save()
+# sam = Contact(first_name = 'sam', last_name = 'waka', phone = '1134567890', email = 'sam@sammail.com').save()
+# jen = Contact(first_name = 'jerk', last_name = 'face', phone = '1134567890', email = 'jerk@facemail.com').save()
 # jen = Contact(first_name = 'lil', last_name = 'dicky', phone = '1134567890', email = 'hiImDave@lildicky.com').save()
 
 def contact_Book():
@@ -74,7 +74,6 @@ def update_contacts():
         new_last_name = str(input('What is the new last name?: ' )).lower()
         new_phone = str(input('What is the new phone number?: ' ))
         new_email = str(input('What is the new email address?: ' )).lower()
-        # result = contacts.where(Contact.first_name == update_person)
         result = Contact.update(first_name = new_first_name, last_name= new_last_name, phone = new_phone, email = new_email ).where(Contact.first_name == update_person).execute()
         for contact in Contact:
             print(f'Full Name: {contact.first_name} {contact.last_name}, Phone: {contact.phone}, Email: {contact.email}')
